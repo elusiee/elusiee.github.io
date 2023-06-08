@@ -1,5 +1,5 @@
 # Emmanuel Elusie Portfolio
-<!-- sameer bhavar Portfolio -->
+<!-- Emmanuel Elusie Portfolio -->
 
 My portfolio This portfolio  created using html,css,javascript and Bootstrap.In this portfolio I added my projects my tech skill
   
@@ -19,7 +19,7 @@ My portfolio This portfolio  created using html,css,javascript and Bootstrap.In 
   
   
   # Deployed Link :-
-    https://emmanuelelusie.github.io/
+    https://alonsome-emosnola.github.io/
     
   
 
