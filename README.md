@@ -12,7 +12,7 @@ My portfolio This portfolio  created using html,css,javascript and Bootstrap.In 
  
   
   ## Clone Snaps :-
-  ![github landing](https://user-images.githubusercontent.com/50591381/192941496-89e0c422-9f4c-44ee-b1af-c36cd012ca19.PNG)
+  ![github landing](https://github.com/alonsome-emosnola/alonsome-emosnola.github.io/blob/master/images/img/Profile.PNG)
 
   
 
