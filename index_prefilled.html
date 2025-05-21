@@ -1,0 +1,46 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head><title>Placeholder</title></head>
+<body>
+  <div class="cc-profile-image"><img src="" /></div>
+  <div class="title h2"></div>
+  <p class="category text-white"></p>
+  <a href="Emmanuel-Elusie-Resume.pdf">Download Resume</a>
+  <div id="about">
+    <p></p>
+    <div class="row mt-3"><div class="col-sm-8"></div></div>
+    <div class="row mt-3"><div class="col-sm-8"></div></div>
+    <div class="row mt-3"><div class="col-sm-8"></div></div>
+    <div class="row mt-3"><div class="col-sm-8"></div></div>
+  </div>
+  <a title="facebook" href="#">FB</a>
+  <a title="whatsapp" href="#">WA</a>
+  <a title="linkedin" href="#">LI</a>
+  <a title="Github" href="#">GH</a>
+
+<script>
+fetch('portfolio_data.json')
+  .then(response => response.json())
+  .then(data => {
+    document.querySelector('.title.h2').textContent = data.profile.name;
+    document.querySelector('.category.text-white').textContent = data.profile.title;
+    document.querySelector('.cc-profile-image img').src = data.profile.profileImage;
+    document.querySelector('a[href$="Resume.pdf"]').href = data.profile.resume;
+
+    document.querySelector('#about p').textContent = data.profile.bio;
+    document.querySelectorAll('#about .row.mt-3 .col-sm-8')[0].textContent = data.profile.contact.email;
+    document.querySelectorAll('#about .row.mt-3 .col-sm-8')[1].textContent = data.profile.contact.phone;
+    document.querySelectorAll('#about .row.mt-3 .col-sm-8')[2].textContent = data.profile.contact.address;
+    document.querySelectorAll('#about .row.mt-3 .col-sm-8')[3].textContent = data.profile.contact.languages.join(', ');
+
+    const socials = data.profile.socials;
+    document.querySelector('a[title="facebook"]').href = socials.facebook;
+    document.querySelector('a[title="whatsapp"]').href = socials.whatsapp;
+    document.querySelector('a[title="linkedin"]').href = socials.linkedin;
+    document.querySelector('a[title="Github"]').href = socials.github;
+  });
+</script>
+
+</body>
+</html>
