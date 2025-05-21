@@ -1,0 +1,291 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Dashboard - Emmanuel Elusie</title>
+  <style>
+    body { font-family: sans-serif; padding: 2rem; max-width: 800px; margin: auto; }
+    input, textarea { width: 100%; padding: 10px; margin-bottom: 10px; }
+    label { font-weight: bold; display: block; margin-top: 10px; }
+    button { padding: 10px 20px; background: #007BFF; color: #fff; border: none; cursor: pointer; }
+    button:hover { background: #0056b3; }
+    .section { margin-top: 30px; padding-top: 20px; border-top: 1px solid #ccc; }
+    .item { border: 1px solid #ddd; padding: 10px; margin-bottom: 10px; position: relative; }
+    .remove-btn { position: absolute; right: 10px; top: 10px; background: red; color: white; border: none; padding: 2px 6px; cursor: pointer; }
+  </style>
+</head>
+<body>
+
+  <script>
+    (function () {
+      const allowedPassword = "EmosNola2313***";
+      const sessionKey = "admin_authenticated";
+  
+      // Check if already authenticated
+      if (sessionStorage.getItem(sessionKey) !== "true") {
+        const input = prompt("Enter Admin Password:");
+        if (input === null || input.trim() !== allowedPassword) {
+          alert("Access denied. Redirecting...");
+          window.location.href = "index.html";
+        } else {
+          sessionStorage.setItem(sessionKey, "true");
+        }
+      }
+  
+      // Add logout button after DOM is ready
+      document.addEventListener("DOMContentLoaded", function () {
+        const logoutBtn = document.createElement("button");
+        logoutBtn.textContent = "Logout";
+        logoutBtn.style.cssText = "position:fixed; top:20px; right:20px; background:#dc3545; color:white; padding:10px; border:none; cursor:pointer;";
+        logoutBtn.onclick = function () {
+          sessionStorage.removeItem(sessionKey);
+          alert("Logged out successfully.");
+          window.location.href = "index.html";
+        };
+        document.body.appendChild(logoutBtn);
+      });
+    })();
+  </script>
+  
+  
+  <h2>Admin Dashboard - Update Portfolio</h2>
+  <form id="adminForm">
+    <div class="section">
+      <h3>Profile Info</h3>
+      <label>Name</label><input type="text" id="name">
+      <label>Role</label><input type="text" id="role">
+      <label>Profile Image URL</label><input type="text" id="profileImage">
+      <label>Resume URL</label><input type="text" id="resume">
+      <label>Bio</label><textarea id="bio" rows="5"></textarea>
+      <label>Email</label><input type="email" id="email">
+      <label>Phone</label><input type="text" id="phone">
+      <label>Address</label><input type="text" id="address">
+      <label>Languages (comma separated)</label><input type="text" id="languages">
+      <label>Facebook</label><input type="text" id="facebook">
+      <label>WhatsApp</label><input type="text" id="whatsapp">
+      <label>LinkedIn</label><input type="text" id="linkedin">
+      <label>GitHub</label><input type="text" id="github">
+    </div>
+
+    <div class="section">
+      <h3>My Tech Stacks</h3>
+      <div id="stacksList"></div>
+      <button type="button" onclick="addStack()">+ Add Stack</button>
+    </div>
+
+    <div class="section">
+      <h3>Skills</h3>
+      <div id="skillsList"></div>
+      <button type="button" onclick="addSkill()">+ Add Skill</button>
+    </div>
+
+    <div class="section">
+      <h3>Projects</h3>
+      <div id="projectsList"></div>
+      <button type="button" onclick="addProject()">+ Add Project</button>
+    </div>
+
+    <div class="section">
+      <h3>Education</h3>
+      <div id="educationsList"></div>
+      <button type="button" onclick="addEducation()">+ Add Education</button>
+    </div>
+    
+    <div class="section">
+      <h3>Experiences</h3>
+      <div id="experiencesList"></div>
+      <button type="button" onclick="addExperience()">+ Add Experience</button>
+    </div>
+
+    <div class="section">
+      <button type="submit">Download Updated JSON</button>
+    </div>
+  </form>
+
+  <script>
+    let data = {};
+    fetch('data.json')
+      .then(res => res.json())
+      .then(json => {
+        data = json;
+        const p = data.profile;
+        document.getElementById('name').value = p.name;
+        document.getElementById('role').value = p.role;
+        document.getElementById('profileImage').value = p.profileImage;
+        document.getElementById('resume').value = p.resume;
+        document.getElementById('bio').value = p.bio;
+        document.getElementById('email').value = p.contact.email;
+        document.getElementById('phone').value = p.contact.phone;
+        document.getElementById('address').value = p.contact.address;
+        document.getElementById('languages').value = p.contact.languages.join(', ');
+        document.getElementById('facebook').value = p.socials.facebook;
+        document.getElementById('whatsapp').value = p.socials.whatsapp;
+        document.getElementById('linkedin').value = p.socials.linkedin;
+        document.getElementById('github').value = p.socials.github;
+
+        p.stacks?.forEach(addStack);
+        (data.stacks || []).forEach(addStack);
+
+        p.skills?.forEach(addSkill);
+        (data.skills || []).forEach(addSkill);
+
+        p.projects?.forEach(addProject);
+        (data.projects || []).forEach(addProject);
+
+        p.education?.forEach(addEducation);
+        (data.education || []).forEach(addEducation);
+
+        p.experience?.forEach(addExperience);
+        (data.experience || []).forEach(addExperience);
+
+      });
+
+    function addStack(stack = { name: "", level: "" }) {
+      const container = document.createElement("div");
+      container.className = "item";
+      container.innerHTML = `
+        <button class="remove-btn" onclick="this.parentElement.remove()">x</button>
+        <label>Stack Name</label><input type="text" class="stack-name" value="${stack.name}">
+        <label>Stack Level (e.g. 80%)</label><input type="text" class="stack-level" value="${stack.level}">
+      `;
+      document.getElementById("stacksList").appendChild(container);
+    }
+
+    function addSkill(skill = { name: "", comment: "", level: "" }) {
+      const container = document.createElement("div");
+      container.className = "item";
+      container.innerHTML = `
+        <button class="remove-btn" onclick="this.parentElement.remove()">x</button>
+        <label>Skill Name</label><input type="text" class="skill-name" value="${skill.name}">
+        <label>Skill Comment</label><textarea class="skill-comment" rows="3">${skill.comment}</textarea>
+        <label>Skill Level (e.g. 80%)</label><input type="text" class="skill-level" value="${skill.level}">
+      `;
+      document.getElementById("skillsList").appendChild(container);
+    }
+
+    function addProject(project = { title: "", description: "", techStack: "", github: "", demo: "" }) {
+      const container = document.createElement("div");
+      container.className = "item";
+      container.innerHTML = `
+        <button class="remove-btn" onclick="this.parentElement.remove()">x</button>
+        <label>Project Title</label><input type="text" class="proj-title" value="${project.title}">
+        <label>Description</label><textarea class="proj-desc" rows="3">${project.description}</textarea>
+        <label>Tech Stack</label><input type="text" class="proj-tech" value="${project.techStack}">
+        <label>GitHub Link</label><input type="text" class="proj-github" value="${project.github || ''}">
+        <label>Live Demo Link</label><input type="text" class="proj-demo" value="${project.demo || ''}">
+      `;
+      document.getElementById("projectsList").appendChild(container);
+    }
+
+    function addEducation(education = { duration: "", level: "", field: "", institution: "", department: "", degree: ""}) {
+      const container = document.createElement("div");
+      container.className = "item";
+      container.innerHTML = `
+        <button class="remove-btn" onclick="this.parentElement.remove()">x</button>
+        <label>Education Duration</label><input type="text" class="edu-duration" value="${education.duration}">
+        <label>Education Level</label><input type="text" class="edu-level" value="${education.level}">
+        <label>Education Field</label><input type="text" class="edu-field" value="${education.field}">
+        <label>Education Institution</label><input type="text" class="edu-institution" value="${education.institution || ''}">
+        <label>Education Department</label><input type="text" class="edu-department" value="${education.department || ''}">
+        <label>Education Degree</label><input type="text" class="edu-degree" value="${education.degree || ''}">
+      `;
+      document.getElementById("educationsList").appendChild(container);
+    }
+
+    function addExperience(experience = { company: "", period: "", role: "", description: ""}) {
+      const container = document.createElement("div");
+      container.className = "item";
+      container.innerHTML = `
+        <button class="remove-btn" onclick="this.parentElement.remove()">x</button>
+        <label>Experience Company</label><input type="text" class="exp-company" value="${experience.company}">
+        <label>Experience Period</label><input type="text" class="exp-period" value="${experience.period}">
+        <label>Experience Role</label><input type="text" class="exp-role" value="${experience.role}">
+        <label>Experience Description</label><input type="text" class="exp-desc" value="${experience.description || ''}">
+      `;
+      document.getElementById("experiencesList").appendChild(container);
+    }
+
+    document.getElementById('adminForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      data.profile.name = document.getElementById('name').value;
+      data.profile.role = document.getElementById('role').value;
+      data.profile.profileImage = document.getElementById('profileImage').value;
+      data.profile.resume = document.getElementById('resume').value;
+      data.profile.bio = document.getElementById('bio').value;
+      data.profile.contact.email = document.getElementById('email').value;
+      data.profile.contact.phone = document.getElementById('phone').value;
+      data.profile.contact.address = document.getElementById('address').value;
+      data.profile.contact.languages = document.getElementById('languages').value.split(',').map(x => x.trim());
+      data.profile.socials.facebook = document.getElementById('facebook').value;
+      data.profile.socials.whatsapp = document.getElementById('whatsapp').value;
+      data.profile.socials.linkedin = document.getElementById('linkedin').value;
+      data.profile.socials.github = document.getElementById('github').value;
+
+      const stacks = [];
+      document.querySelectorAll("#stacksList .item").forEach(item => {
+        stacks.push({
+          name: item.querySelector('.stack-name').value,
+          level: item.querySelector('.stack-level').value
+        });
+      });
+      data.stacks = stacks;
+
+      const skills = [];
+      document.querySelectorAll("#skillsList .item").forEach(item => {
+        skills.push({
+          name: item.querySelector('.skill-name').value,
+          comment: item.querySelector('.skill-comment').value,
+          level: item.querySelector('.skill-level').value
+        });
+      });
+      data.skills = skills;
+
+      const projects = [];
+      document.querySelectorAll("#projectsList .item").forEach(item => {
+        projects.push({
+          title: item.querySelector('.proj-title').value,
+          description: item.querySelector('.proj-desc').value,
+          techStack: item.querySelector('.proj-tech').value,
+          github: item.querySelector('.proj-github').value,
+          demo: item.querySelector('.proj-demo').value
+        });
+      });
+      data.projects = projects;
+
+      const educations = [];
+      document.querySelectorAll("#educationsList .item").forEach(item => {
+        educations.push({
+          duration: item.querySelector('.edu-duration').value,
+          level: item.querySelector('.edu-level').value,
+          field: item.querySelector('.edu-field').value,
+          institution: item.querySelector('.edu-institution').value,
+          department: item.querySelector('.edu-department').value,
+          degree: item.querySelector('.edu-degree').value
+        });
+      });
+      data.education = educations;
+
+      const experiences = [];
+      document.querySelectorAll("#experiencesList .item").forEach(item => {
+        experiences.push({
+          company: item.querySelector('.exp-company').value,
+          period: item.querySelector('.exp-period').value,
+          role: item.querySelector('.exp-role').value,
+          description: item.querySelector('.exp-desc').value
+        });
+      });
+      data.experience = experiences;
+
+      const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'data.json';
+      a.click();
+      URL.revokeObjectURL(url);
+    });
+  </script>
+  <script src="admin.js"></script>
+</body>
+</html>
