@@ -96,7 +96,7 @@
       <label>Profile Image URL</label><input type="text" id="profileImage">
       <label>Resume URL</label><input type="text" id="resume">
       <label>Bio</label><textarea id="bio" rows="5"></textarea>
-      <label>Email</label><input type="email" id="email">
+      <label>Email</label><input type="text" id="email">
       <label>Phone</label><input type="text" id="phone">
       <label>Address</label><input type="text" id="address">
       <label>Languages (comma separated)</label><input type="text" id="languages">
@@ -138,7 +138,7 @@
     </div>
 
     <div class="section">
-      <button type="submit">Download Updated JSON</button>
+      <button type="submit">Push to Repo</button>
     </div>
   </form>
 
@@ -318,13 +318,41 @@
       });
       data.experience = experiences;
 
-      const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+      /** const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;
       a.download = 'data.json';
       a.click();
-      URL.revokeObjectURL(url);
+      URL.revokeObjectURL(url); **/
+
+      fetch("https://portfolio-api-delta-taupe.vercel.app/api/update", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data)
+      })
+      .then(res => res.json())
+      .then(response => {
+        if (response.message === "Success") {
+          alert("✅ Portfolio updated on GitHub successfully.");
+    
+          // Step 2: Trigger backup download of the same JSON
+          const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+          const url = URL.createObjectURL(blob);
+          const a = document.createElement('a');
+          a.href = url;
+          a.download = 'portfolio_data_backup.json';
+          a.click();
+          URL.revokeObjectURL(url);
+        } else {
+          alert("❌ GitHub update failed.");
+          console.error(response.error);
+        }
+      })
+      .catch(err => {
+        alert("❌ Network error while updating.");
+        console.error(err);
+      });
     });
   </script>
   <script src="admin.js"></script>
