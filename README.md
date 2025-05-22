@@ -19,7 +19,7 @@ My portfolio This portfolio  created using html,css,javascript and Bootstrap.In 
   
   
   # Deployed Link :-
-    https://alonsome-emosnola.github.io/
+    https://elusiee.github.io/
     
   
 
