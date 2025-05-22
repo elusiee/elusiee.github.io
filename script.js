@@ -5,6 +5,7 @@ fetch('data.json')
     document.querySelector('.navbar-translate .navbar-brand').setAttribute('href', data.profile.socials.github);
     document.querySelector('.navbar-translate .navbar-brand').textContent = data.title;
     document.querySelector('div.h2.title').textContent = data.profile.name;
+    document.getElementsByTagName('form').item(0).setAttribute('action', data.profile.contact.formLink);
 
     // NAV BAR
     const navbarNav = document.querySelector('.navbar-nav');
@@ -37,10 +38,10 @@ fetch('data.json')
     
     // Update social media links
     const socialLinks = data.profile.socials;
-    document.querySelector('a[title="facebook"]').setAttribute('href', socialLinks.facebook);
-    document.querySelector('a[title="whatsapp"]').setAttribute('href', socialLinks.whatsapp);
-    document.querySelector('a[title="linkedin"]').setAttribute('href', socialLinks.linkedin);
-    document.querySelector('a[title="Github"]').setAttribute('href', socialLinks.github);
+    document.querySelector('.facebook-btn').setAttribute('href', socialLinks.facebook);
+    document.querySelector('.whatsapp-btn').setAttribute('href', socialLinks.whatsapp);
+    document.querySelector('.linkedin-btn').setAttribute('href', socialLinks.linkedin);
+    document.querySelector('.github-btn').setAttribute('href', socialLinks.github);
 
     // Update the "About" section
     const aboutTitle = document.querySelector('#about .h4.title');
@@ -252,36 +253,30 @@ fetch('data.json')
     });
 
     // Update the "Contact" section
-    document.addEventListener("DOMContentLoaded", () => {
       const contact = data.profile.contact;
-    
-      // Update Address
-      const addressEl = document.getElementById("contact-address");
-      if (addressEl) addressEl.textContent = contact.address;
-    
-      // Update Phone
-      const phoneEl = document.getElementById("contact-phone");
-      if (phoneEl) phoneEl.textContent = contact.phone;
-    
-      // Update Email
-      const emailEl = document.getElementById("contact-email");
-      if (emailEl) emailEl.textContent = contact.email;
-    });
+      const contactInfo = document.querySelector(".contact-info");
+      if(contactInfo){
+        contactInfo.innerHTML = `                 
+                    <p class="mb-0"><strong>Address </strong></p>
+                    <p id="contact-address" class="pb-2">${contact.address}</p>
+                    <p class="mb-0"><strong>Phone</strong></p>
+                    <p id="contact-phone" class="pb-2">${contact.phone}</p>
+                    <p class="mb-0"><strong>Email</strong></p>
+                    <p id="contact-email">${contact.email}</p>`;
+      }
 
     // Update the "Footer Section"
-    document.addEventListener("DOMContentLoaded", () => {
-      // Set footer name
-      const footerName = document.getElementById("footer");
+      const footerName = document.querySelector(".footer");
       if (footerName) {
-        footerName.textContent = data.profile.name;
+        footerName.innerHTML = `
+        <div class="container text-center">
+          <a class="cc-facebook btn btn-link" href="${data.profile.socials.facebook}"><i class="fa fa-facebook fa-2x " aria-hidden="true"></i></a><a class="cc-twitter btn btn-link " href="${data.profile.socials.twitter}"><i class="fa fa-twitter fa-2x " aria-hidden="true"></i></a><a class="cc-whatsapp btn btn-link" href="${data.profile.socials.whatsapp}"><i class="fa fa-whatsapp fa-2x" aria-hidden="true"></i></a><a class="cc-linkedin btn btn-link" href="${data.profile.socials.linkedin}"><i class="fa fa-linkedin fa-2x " aria-hidden="true"></i></a></div>
+          <div id="footer" class="footer-name h4 title text-center">${data.profile.name}</div>
+          <div class="text-center text-muted">
+          <p class="footer-copyright">©${data.profile.name}. All rights reserved. ${new Date().getFullYear()}</p>
+        </div>`;
       }
-    
-      // Set copyright
-      const footerCopyright = document.getElementById("footer-copyright");
-      if (footerCopyright) {
-        footerCopyright.textContent = `©${data.profile.name}. All rights reserved. ${new Date().getFullYear()}`;
-      }
-    });
+
 
     // Update the "Github Calendar"
     document.addEventListener("DOMContentLoaded", () => {

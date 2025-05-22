@@ -13,8 +13,8 @@
   "profile": {
     "name": "Emmanuel C. Elusie",
     "role": "Software Developer",
-    "profileImage": "images/img/Emmanuel_Elusie.JPG",
-    "resume": "Emmanuel-Elusie-Resume.pdf",
+    "profileImage": "images/img/Emmanuel_Elusie.jpg",
+    "resume": "assets/Emmanuel-Elusie-Resume.pdf",
     "bio": "Hello! I am Emmanuel Elusie, a dedicated Software Developer. A self taught Backend Developer with an interesting Bootcamp record from the Federal University of Technology, Owerri (FUTO). with 1200+ hours of coding and 100+ hours of soft skills training. Technical Skillset - Java | MongoDB | SQL | Python | JavaScript| C/C++ | CSS |TypeScript | PHP | Flutter | Dart. Looking forward to utilizing my skills in a challenging work environment.",
     "github": {
       "username": "elusiee",
@@ -22,18 +22,20 @@
       "theme": "buefy"
     },
     "contact": {
-      "email": "elusieemmanuel@gmail.com",
+      "email": "elusieemmanuel@gmail.com, elusieemmanuel@outlook.com",
       "phone": "+2348139746712",
       "address": "Tonimas by Osisioma Ngwa LGA, Aba, Abia State, Nigeria",
       "languages": [
         "English",
         "Igbo"
-      ]
+      ],
+      "formLink": "https://formspree.io/f/xwkjdavw"
     },
     "socials": {
       "facebook": "https://www.facebook.com/Emosnola",
       "whatsapp": "https://wa.me/2348139746712?text=Hello%21%20My%20name%20is%20___________________________%20from%20__________________%20I%27m%20interested%20in%20your%20products.",
       "linkedin": "https://www.linkedin.com/in/emmanuel-elusie-8624b01a1/",
+      "twitter": "None",
       "github": "https://github.com/elusiee"
     }
   },
@@ -51,12 +53,12 @@
       "level": "60%"
     },
     {
-      "name": "PHP",
+      "name": ".NET",
       "level": "60%"
     },
     {
       "name": "SQL | MySql",
-      "level": "80%"
+      "level": "100%"
     },
     {
       "name": "Node JS | JavaScript",
@@ -64,18 +66,18 @@
     },
     {
       "name": "Git",
-      "level": "75%"
+      "level": "85%"
     },
     {
       "name": "MongoDB | Express | Flutter | Dart",
-      "level": "70%"
+      "level": "60%"
     }
   ],
   "skills":[
     {
       "name": "Java Development",
       "comment": "I have good knowledge of Java Backend Development and I also Learn some Framework Spring Boot and Hibernate.",
-      "level": "75%"
+      "level": "85%"
     },
     {
       "name": "Back End Development",
@@ -99,28 +101,28 @@
       "description": "Java Sound Recorder System (JSRS) will keep the records of all sounds made by anyone which could be integrated into a social media system I'm working on. It will can also be used as an sound detection system (IDS).",
       "techStack": "Java, MySql",
       "demo": "None",
-      "github": "https://github.com/alonsome-emosnola/Empuci_Sounder_Recorder_JAVA"
+      "github": "https://github.com/elusiee/Empuci_Sounder_Recorder_JAVA"
     },
     {
       "title": "100 Days of Code - Python Hackathon Projects",
       "description": "100 Days of Code - Python Hackathon Projects enlists all the python related projects created while undergoing a python bootcamp by Angela Yu at London App Brewery.",
       "techStack": "Python",
       "demo": "None",
-      "github": "https://github.com/alonsome-emosnola/Empuci_100-days-of-code-python"
+      "github": "https://github.com/elusiee/Empuci_100-days-of-code-python"
     },
     {
       "title": "Empuci AI Bot",
       "description": "Empuci AI as i would prefer to reference it is a chat and communication research AI built ontop of Google Bard's API Engine that can extract texts on images using tesseract OCR Engine and respond on text like chatGPT would.",
       "techStack": "Node JS",
       "demo": "https://t.me/empuci_bot",
-      "github": "https://github.com/alonsome-emosnola/Empuci_AI"
+      "github": "https://github.com/elusiee/Empuci_AI"
     },
     {
       "title": "Empuci USSD",
       "description": "Empuci USSD is an Unstructured Supplementary Service Data App that gets the name of a user based on the serial number (A school project conducted soley by me).",
       "techStack": "Node JS",
       "demo": "None",
-      "github": "https://github.com/alonsome-emosnola/Empuci_USSD"
+      "github": "https://github.com/elusiee/Empuci_USSD"
     }
   ],
   "education": [
