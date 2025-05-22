@@ -279,7 +279,6 @@ fetch('data.json')
 
 
     // Update the "Github Calendar"
-    document.addEventListener("DOMContentLoaded", () => {
       const username = data.profile.github.username;
       const calendarEl = document.getElementById("githubCalender");
     
@@ -288,11 +287,9 @@ fetch('data.json')
           responsive: true
         });
       }
-    });
+
 
     // Update the "Github Analytics"
-    document.addEventListener("DOMContentLoaded", () => {
-      const username = data.profile.github.username;
       const theme = data.profile.github.theme;
     
       const statsImg = document.getElementById("github-stats");
@@ -305,7 +302,6 @@ fetch('data.json')
       if (langsImg) {
         langsImg.src = `https://github-readme-stats.vercel.app/api/top-langs/?username=${username}&theme=${theme}&layout=compact`;
       }
-    });
     
     
 
