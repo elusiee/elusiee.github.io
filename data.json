@@ -10,7 +10,7 @@
     "resume": "<li class='nav-item'><a class='nav-link smooth-scroll' href='Emmanuel-Elusie-Resume.pdf' download>Resume</a></li>"
   },
   "profile": {
-    "name": "Emmanuel Elusie",
+    "name": "Emmanuel C. Elusie",
     "role": "Software Developer",
     "profileImage": "images/img/Emmanuel_Elusie.jpg",
     "resume": "assets/Emmanuel-Elusie-Resume.pdf",
@@ -99,29 +99,29 @@
       "title": "Java Sound Recorder System (JSRS)",
       "description": "Java Sound Recorder System (JSRS) will keep the records of all sounds made by anyone which could be integrated into a social media system I'm working on. It will can also be used as an sound detection system (IDS).",
       "techStack": "Java, MySql",
-      "demo": "None",
-      "github": "https://github.com/elusiee/Empuci_Sounder_Recorder_JAVA"
+      "github": "https://github.com/elusiee/Empuci_Sounder_Recorder_JAVA",
+      "demo": "None"
     },
     {
       "title": "100 Days of Code - Python Hackathon Projects",
       "description": "100 Days of Code - Python Hackathon Projects enlists all the python related projects created while undergoing a python bootcamp by Angela Yu at London App Brewery.",
       "techStack": "Python",
-      "demo": "None",
-      "github": "https://github.com/elusiee/Empuci_100-days-of-code-python"
+      "github": "https://github.com/elusiee/Empuci_100-days-of-code-python",
+      "demo": "None"
     },
     {
       "title": "Empuci AI Bot",
       "description": "Empuci AI as i would prefer to reference it is a chat and communication research AI built ontop of Google Bard's API Engine that can extract texts on images using tesseract OCR Engine and respond on text like chatGPT would.",
       "techStack": "Node JS",
-      "demo": "https://t.me/empuci_bot",
-      "github": "https://github.com/elusiee/Empuci_AI"
+      "github": "https://github.com/elusiee/Empuci_AI",
+      "demo": "https://t.me/empuci_bot"
     },
     {
       "title": "Empuci USSD",
       "description": "Empuci USSD is an Unstructured Supplementary Service Data App that gets the name of a user based on the serial number (A school project conducted soley by me).",
       "techStack": "Node JS",
-      "demo": "None",
-      "github": "https://github.com/elusiee/Empuci_USSD"
+      "github": "https://github.com/elusiee/Empuci_USSD",
+      "demo": "None"
     }
   ],
   "education": [
