@@ -5,36 +5,55 @@
   <meta charset="UTF-8">
   <title>Admin Dashboard - Emmanuel Elusie</title>
   <style>
-    body { font-family: sans-serif; padding: 2rem; max-width: 800px; margin: auto; }
-    input, textarea { width: 100%; padding: 10px; margin-bottom: 10px; }
+    body { font-family: sans-serif; padding: 2rem; max-width: 900px; margin: auto; background: var(--bg-color); color: var(--text-color); transition: 0.3s; }
+    input, textarea { width: 100%; padding: 10px; margin-bottom: 10px; border-radius: 4px; border: 1px solid #ccc; }
     label { font-weight: bold; display: block; margin-top: 10px; }
-    button { padding: 10px 20px; background: #007BFF; color: #fff; border: none; cursor: pointer; }
+    button { padding: 10px 20px; background: #007BFF; color: #fff; border: none; cursor: pointer; border-radius: 4px; }
     button:hover { background: #0056b3; }
-    .section { margin-top: 30px; padding-top: 20px; border-top: 1px solid #ccc; }
-    .item { border: 1px solid #ddd; padding: 10px; margin-bottom: 10px; position: relative; }
+    .item { border: 1px solid #ddd; padding: 10px; margin-bottom: 10px; position: relative; border-radius: 5px; background: #fefefe; }
     .remove-btn { position: absolute; right: 10px; top: 10px; background: red; color: white; border: none; padding: 2px 6px; cursor: pointer; }
-  </style>
-  <style>
+
+    .steps {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1rem;
+      overflow-x: auto;
+    }
+    .step {
+      flex: 1;
+      padding: 0.75rem;
+      background: #eee;
+      border-radius: 5px;
+      text-align: center;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    .step.active {
+      background: #007bff;
+      color: white;
+    }
+    .section { display: none; }
+    .section.active { display: block; }
+    .nav-buttons {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 2rem;
+    }
+
     :root {
       --bg-color: #ffffff;
       --text-color: #000000;
     }
-  
-    body {
-      background-color: var(--bg-color);
-      color: var(--text-color);
-      transition: background-color 0.3s, color 0.3s;
-    }
-  
+
     body.dark-mode {
       --bg-color: #121212;
       --text-color: #f5f5f5;
     }
-  
+
     #theme-toggle {
       position: fixed;
       top: 20px;
-      right: 90px;
+      right: 100px;
       padding: 8px 12px;
       background-color: #007bff;
       color: #fff;
@@ -43,7 +62,7 @@
       cursor: pointer;
       z-index: 1000;
     }
-  
+
     #theme-toggle:hover {
       background-color: #0056b3;
     }
@@ -109,13 +128,20 @@
 <div id="adminPanel" style="display: none;">
   <!-- All your admin panel form fields go here -->
 
-  <div>
-    <button class="theme-mode" id="theme-toggle">Toggle Theme</button>
+  <button id="theme-toggle">Toggle Theme</button>
+  <h2>Admin Dashboard - Update Portfolio</h2>
+
+  <div class="steps">
+    <div class="step active">Profile</div>
+    <div class="step">Stacks</div>
+    <div class="step">Skills</div>
+    <div class="step">Projects</div>
+    <div class="step">Education</div>
+    <div class="step">Experience</div>
   </div>
 
-  <h2>Admin Dashboard - Update Portfolio</h2>
   <form id="adminForm">
-    <div class="section">
+    <div class="section active">
       <h3>Profile Info</h3>
       <label>Name</label><input type="text" id="name">
       <label>Role</label><input type="text" id="role">
@@ -133,37 +159,18 @@
       <label>GitHub</label><input type="text" id="github">
     </div>
 
-    <div class="section">
-      <h3>My Tech Stacks</h3>
-      <div id="stacksList"></div>
-      <button type="button" onclick="addStack()">+ Add Stack</button>
+    <div class="section"><h3>My Tech Stacks</h3><div id="stacksList"></div><button type="button" onclick="addStack()">+ Add Stack</button></div>
+    <div class="section"><h3>Skills</h3><div id="skillsList"></div><button type="button" onclick="addSkill()">+ Add Skill</button></div>
+    <div class="section"><h3>Projects</h3><div id="projectsList"></div><button type="button" onclick="addProject()">+ Add Project</button></div>
+    <div class="section"><h3>Education</h3><div id="educationsList"></div><button type="button" onclick="addEducation()">+ Add Education</button></div>
+    <div class="section"><h3>Experiences</h3><div id="experiencesList"></div><button type="button" onclick="addExperience()">+ Add Experience</button></div>
+
+    <div class="nav-buttons">
+      <button type="button" id="prevBtn">Previous</button>
+      <button type="button" id="nextBtn">Next</button>
     </div>
 
-    <div class="section">
-      <h3>Skills</h3>
-      <div id="skillsList"></div>
-      <button type="button" onclick="addSkill()">+ Add Skill</button>
-    </div>
-
-    <div class="section">
-      <h3>Projects</h3>
-      <div id="projectsList"></div>
-      <button type="button" onclick="addProject()">+ Add Project</button>
-    </div>
-
-    <div class="section">
-      <h3>Education</h3>
-      <div id="educationsList"></div>
-      <button type="button" onclick="addEducation()">+ Add Education</button>
-    </div>
-    
-    <div class="section">
-      <h3>Experiences</h3>
-      <div id="experiencesList"></div>
-      <button type="button" onclick="addExperience()">+ Add Experience</button>
-    </div>
-
-    <div class="section">
+    <div style="text-align:center; margin-top:2rem;">
       <button type="submit">Push to Repo</button>
     </div>
   </form>
@@ -417,7 +424,39 @@
       });
     });
   </script>
-  <script src="admin.js"></script>
+
+  <script>
+    // Section navigation
+    const sections = document.querySelectorAll('.section');
+    const steps = document.querySelectorAll('.step');
+    let currentStep = 0;
+    
+    function showStep(index) {
+      sections.forEach((section, i) => section.classList.toggle('active', i === index));
+      steps.forEach((step, i) => step.classList.toggle('active', i === index));
+    }
+    
+    document.getElementById('nextBtn').addEventListener('click', () => {
+      if (currentStep < sections.length - 1) {
+        currentStep++;
+        showStep(currentStep);
+      }
+    });
+    
+    document.getElementById('prevBtn').addEventListener('click', () => {
+      if (currentStep > 0) {
+        currentStep--;
+        showStep(currentStep);
+      }
+    });
+    
+    steps.forEach((step, index) => {
+      step.addEventListener('click', () => {
+        currentStep = index;
+        showStep(currentStep);
+      });
+    });
+    </script>
   <script src="theme.js"></script>
 </div>
 </body>
