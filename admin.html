@@ -93,8 +93,8 @@
       <h3>Profile Info</h3>
       <label>Name</label><input type="text" id="name">
       <label>Role</label><input type="text" id="role">
-      <label>Profile Image URL</label><input type="text" id="profileImage">
-      <label>Resume URL</label><input type="text" id="resume">
+      <label>Profile Image</label><input type="file" accept="image/*" id="profileImage">
+      <label>Resume</label><input type="file" accept="application/pdf" id="resume">
       <label>Bio</label><textarea id="bio" rows="5"></textarea>
       <label>Email</label><input type="text" id="email">
       <label>Phone</label><input type="text" id="phone">
@@ -151,8 +151,8 @@
         const p = data.profile;
         document.getElementById('name').value = p.name;
         document.getElementById('role').value = p.role;
-        document.getElementById('profileImage').value = p.profileImage;
-        document.getElementById('resume').value = p.resume;
+        //document.getElementById('profileImage').value = p.profileImage;
+        //document.getElementById('resume').value = p.resume;
         document.getElementById('bio').value = p.bio;
         document.getElementById('email').value = p.contact.email;
         document.getElementById('phone').value = p.contact.phone;
@@ -246,7 +246,9 @@
       document.getElementById("experiencesList").appendChild(container);
     }
 
-    document.getElementById('adminForm').addEventListener('submit', function(e) {
+    // Function to upload file to GitHub
+    
+    document.getElementById('adminForm').addEventListener('submit', async function(e) {
       e.preventDefault();
       data.profile.name = document.getElementById('name').value;
       data.profile.role = document.getElementById('role').value;
@@ -326,17 +328,51 @@
       a.click();
       URL.revokeObjectURL(url); **/
 
+      const uploads = [];
+
+      // 🔧 Helper function to convert file to { filename, content }
+      async function fileToUploadObject(file, targetPath) {
+        return new Promise((resolve, reject) => {
+          const reader = new FileReader();
+          reader.onload = () => {
+            const base64 = reader.result.split(",")[1]; // Strip the base64 header
+            resolve({ filename: targetPath, content: base64 });
+          };
+          reader.onerror = reject;
+          reader.readAsDataURL(file);
+        });
+      }
+
+      // 📁 Upload Profile Image
+      const profileImageFile = document.getElementById("profileImage").files[0];
+      if (profileImageFile) {
+        const path = "images/img/" + profileImageFile.name;
+        uploads.push(await fileToUploadObject(profileImageFile, path));
+        if (!data.profile) data.profile = {};
+        data.profile.profileImage = path;
+      }
+
+      // 📁 Upload Resume
+      const resumeFile = document.getElementById("resume").files[0];
+      if (resumeFile) {
+        const path = "assets/" + resumeFile.name;
+        uploads.push(await fileToUploadObject(resumeFile, path));
+        if (!data.profile) data.profile = {};
+        data.profile.resume = path;
+      }
+
+      // 📤 Submit data + uploads to Vercel API
       fetch("https://portfolio-api-delta-taupe.vercel.app/api/update", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data)
+        body: JSON.stringify({ data, uploads })
       })
       .then(res => res.json())
       .then(response => {
         if (response.message === "Success") {
-          alert("✅ Portfolio updated on GitHub successfully.");
-    
-          // Step 2: Trigger backup download of the same JSON
+          alert("✅ Portfolio updated successfully!");
+
+          // Optional: download backup of updated JSON
           const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
           const url = URL.createObjectURL(blob);
           const a = document.createElement('a');
@@ -345,12 +381,12 @@
           a.click();
           URL.revokeObjectURL(url);
         } else {
-          alert("❌ GitHub update failed.");
+          alert("❌ Update failed: " + response.message);
           console.error(response.error);
         }
       })
       .catch(err => {
-        alert("❌ Network error while updating.");
+        alert("❌ Network error.");
         console.error(err);
       });
     });
