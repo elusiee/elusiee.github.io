@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://alonsome.me/</loc>
+    <lastmod>2025-05-31</lastmod>
+    <priority>1.00</priority>
+  </url>
+    <url>
+        <loc>https://alonsome.me/index.html#about</loc>
+        <lastmod>2025-05-31</lastmod>
+        <priority>0.80</priority>
+    </url>
+    <url>
+        <loc>https://alonsome.me/index.html#skill</loc>
+        <lastmod>2025-05-31</lastmod>
+        <priority>0.80</priority>
+    </url>
+  <url>
+        <loc>https://alonsome.me/index.html#project</loc>
+        <lastmod>2025-05-31</lastmod>
+        <priority>0.80</priority>
+    </url>
+    <url>
+        <loc>https://alonsome.me/index.html#experience</loc>
+        <lastmod>2025-05-31</lastmod>
+        <priority>0.80</priority>
+    </url>
+    <url>
+        <loc>https://alonsome.me/index.html#contact</loc>
+        <lastmod>2025-05-31</lastmod>
+        <priority>0.80</priority>
+    </url>
+</urlset>
