@@ -12,8 +12,8 @@
   "profile": {
     "name": "Emmanuel C. Elusie",
     "role": "Software Developer",
-    "profileImage": "images/img/Emmanuel_Elusie.jpg",
-    "resume": "assets/Emmanuel-Elusie-Resume.pdf",
+    "profileImage": "",
+    "resume": "",
     "bio": "Hello! I am Emmanuel Elusie, a dedicated Software Developer. A self taught Backend Developer with an interesting Bootcamp record from the Federal University of Technology, Owerri (FUTO). with 1200+ hours of coding and 100+ hours of soft skills training. Technical Skillset - Java | MongoDB | SQL | Python | JavaScript| C/C++ | CSS |TypeScript | PHP | Flutter | Dart. Looking forward to utilizing my skills in a challenging work environment.",
     "github": {
       "username": "elusiee",
@@ -148,6 +148,14 @@
       "institution": "Maharashtra State Board",
       "department": "General Studies",
       "degree": "First School Leaving Certificate (FSLC)"
+    },
+    {
+      "duration": "2025 - 2026",
+      "level": "National Youth Service Corp Certificate ",
+      "field": "NYSC",
+      "institution": "NYSC",
+      "department": "Teaching",
+      "degree": "NYSC Certificate"
     }
   ],
   "experience": [
