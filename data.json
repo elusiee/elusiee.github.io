@@ -7,10 +7,10 @@
     "projects": "<li class='nav-item'><a class='nav-link smooth-scroll' href='#project'>Project</a></li>",
     "experience": "<li class='nav-item'><a class='nav-link smooth-scroll' href='#experience'>Experience</a></li>",
     "contact": "<li class='nav-item'><a class='nav-link smooth-scroll' href='#contact'>Contact</a></li>",
-    "resume": "<li class='nav-item'><a class='nav-link smooth-scroll' href='Emmanuel-Elusie-Resume.pdf' download>Resume</a></li>"
+    "resume": "<li class='nav-item'><a class='nav-link smooth-scroll' href='assets/Emmanuel-Elusie-Resume.pdf' download>Resume</a></li>"
   },
   "profile": {
-    "name": "Emmanuel Elusie (Alonsome)",
+    "name": "Emmanuel C. Elusie",
     "role": "Software (Backend) Developer | Author | Critical/Free Thinker",
     "profileImage": "images/img/Emmanuel_Elusie.jpg",
     "resume": "assets/Emmanuel-Elusie-Resume.pdf",
@@ -137,7 +137,7 @@
       "duration": "2015-2016",
       "level": "Highest Secondary Certificate (12th)",
       "field": "General Studies (Sciences)",
-      "institution": "Maharashtra State Board",
+      "institution": "Ekcela International School, Aba",
       "department": "General Studies",
       "degree": "WASSCE, NECO, JAMB"
     },
@@ -145,7 +145,7 @@
       "duration": "2013 - 2014",
       "level": "Secondary School Certificate",
       "field": "General Studies",
-      "institution": "Maharashtra State Board",
+      "institution": "Ekcela International School, Aba",
       "department": "General Studies",
       "degree": "First School Leaving Certificate (FSLC)"
     },
