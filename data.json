@@ -7,7 +7,7 @@
     "projects": "<li class='nav-item'><a class='nav-link smooth-scroll' href='#project'>Project</a></li>",
     "experience": "<li class='nav-item'><a class='nav-link smooth-scroll' href='#experience'>Experience</a></li>",
     "contact": "<li class='nav-item'><a class='nav-link smooth-scroll' href='#contact'>Contact</a></li>",
-    "resume": "<li class='nav-item'><a class='nav-link smooth-scroll' href='Emmanuel-Elusie-Resume.pdf' download>Resume</a></li>"
+    "resume": "<li class='nav-item'><a class='nav-link smooth-scroll' href='assets/Emmanuel-Elusie-Resume.pdf' download>Resume</a></li>"
   },
   "profile": {
     "name": "Emmanuel C. Elusie",
